@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Registrar Sucursal</h1>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarSucursal/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="number" id="txtid_sucursal" name="txtid_sucursal" class="form-control" placeholder="ID Sucursal" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtnombre_sucursal" name="txtnombre_sucursal" class="form-control" placeholder="Nombre Sucursal" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="numempleado" name="numempleado" class="form-control" placeholder="Número Empleados" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtcalle_sucursal" name="txtcalle_sucursal" class="form-control" placeholder="Calle Sucursal" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtproductos" name="txtproductos" class="form-control" placeholder="Productos Disponibles" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="numproducto" name="numproducto" class="form-control" placeholder="Número de Productos" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="numtelefono" name="numtelefono" class="form-control" placeholder="Teléfono" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <img class="w-50" src="{% static 'img/sucursal.png' %}" width="400" height="400" alt="">
+            <h1>Listado de Sucursales</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID Sucursal</th>
+                            <th>Nombre</th>
+                            <th>Empleados</th>
+                            <th>Calle</th>
+                            <th>Productos</th>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sucursal in misSucursales %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ sucursal.id_sucursal }}</td>
+                                <td>{{ sucursal.nombre_sucursal }}</td>
+                                <td>{{ sucursal.numero_empleado }}</td>
+                                <td>{{ sucursal.calle_sucursal }}</td>
+                                <td>{{ sucursal.productos }}</td>
+                                <td>{{ sucursal.telefono }}</td>
+                                <td><a href="seleccionarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-info">Editar</a></td>
+                                <td><a href="borrarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-danger">Borrar</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

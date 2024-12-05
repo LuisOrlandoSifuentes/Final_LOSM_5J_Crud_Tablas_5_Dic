@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1>Editar Venta</h1>
+        <form action="/editarVenta/" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <input type="number" name="txtid" class="form-control" value="{{ venta.id_ventas }}" readonly>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txtempleado" class="form-control" value="{{ venta.id_empleado }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txtcliente" class="form-control" value="{{ venta.id_cliente }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txtproducto" class="form-control" value="{{ venta.id_producto }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="date" name="txtfecha" class="form-control" value="{{ fecha_venta }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txtcantidad" class="form-control" value="{{ venta.cantidad }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txtsucursal" class="form-control" value="{{ venta.id_sucursal }}" required>
+            </div>
+            <div class="form-group py-3">
+                <input type="number" name="txttotal" class="form-control" value="{{ venta.total }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
